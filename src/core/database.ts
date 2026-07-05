@@ -185,10 +185,10 @@ export async function seedDatabaseIfEmpty() {
       collectedAmount: 0,
       lastLoginAt: new Date().toISOString(),
     };
-    await db.collectors.add(activeCollector);
+    await db.collectors.put(activeCollector);
 
     const userFields = createBaseEntityFields('system');
-    await db.users.add({
+    await db.users.put({
       id: seedCollectorId,
       ...userFields,
       username: 'collector',

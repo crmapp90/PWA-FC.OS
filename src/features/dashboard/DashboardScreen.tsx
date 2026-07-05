@@ -367,7 +367,7 @@ export const DashboardScreen: React.FC = () => {
           <div className="bg-slate-50 dark:bg-slate-900 p-3.5 rounded-xl border border-slate-100 dark:border-slate-800 flex items-center justify-between">
             <div className="space-y-0.5">
               <span className="block text-[10px] text-slate-400 font-extrabold uppercase">Pemulihan Bulanan</span>
-              <span className="block text-sm font-black text-emerald-600">{formatCurrency(data.metrics.collectedAmount || 18500000)}</span>
+              <span className="block text-sm font-black text-emerald-600">{formatCurrency(data.metrics.collectedAmount || 0)}</span>
             </div>
             <span className="text-xs font-bold text-slate-500">Target: {data.metrics.recoveryPercentage}%</span>
           </div>

@@ -463,9 +463,10 @@ export const CustomersScreen: React.FC = () => {
 
       await loadCustomers();
       setView('list');
-    } catch (err) {
+    } catch (err: any) {
       console.error('Failed to persist customer', err);
-      alert('Gagal menyimpan data pelanggan ke database lokal.');
+      const detailedMessage = err?.message || String(err);
+      alert(`Gagal menyimpan data pelanggan ke database lokal.\n\nDetail Error: ${detailedMessage}`);
     } finally {
       setIsFormSaving(false);
     }

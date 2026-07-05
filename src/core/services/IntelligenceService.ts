@@ -823,7 +823,7 @@ export class IntelligenceService {
     const collectorPtps = allPtps.filter(p => p.collectorId === activeCollectorId);
     
     // Temuan 3 Fix: Calculate collected amount dynamically from active payments instead of static profile field
-    const collectedAmount = collectorPayments.reduce((sum, p) => sum + p.amount, 0) || collector?.collectedAmount || 18500000;
+    const collectedAmount = collectorPayments.reduce((sum, p) => sum + p.amount, 0) || collector?.collectedAmount || 0;
     
     // Today-specific filtering
     const todayVisits = collectorVisits.filter(v => v.visitDate && v.visitDate.startsWith(todayStr));

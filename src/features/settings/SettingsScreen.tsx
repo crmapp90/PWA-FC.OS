@@ -28,6 +28,7 @@ import { db } from '../../core/database';
 import { secureStorage } from '../../core/secure_storage';
 import { logger } from '../../core/logger';
 import { isSupabaseConfigured, updateSupabaseConfig } from '../../core/supabase';
+import { AuthService } from '../../core/auth_service';
 
 
 export const SettingsScreen: React.FC = () => {
@@ -67,21 +68,19 @@ export const SettingsScreen: React.FC = () => {
 
   const handleWipeDatabase = async () => {
     try {
-      await db.customers.clear();
-      await db.collectors.clear();
-      await db.syncQueue.clear();
-      await db.visits.clear();
-      await db.payments.clear();
-      await db.promiseToPay.clear();
-      await logger.clearLogs();
+      // Safely wipe database using Dexie safeReset() to ensure all tables are completely cleared
+      await db.safeReset();
       
+      // Clear PIN and all auth credentials
+      AuthService.resetDevice();
       secureStorage.clear();
       
       logger.info('System', 'Local database hard reset applied.');
       setIsResetConfirmOpen(false);
       window.location.reload();
-    } catch (e) {
+    } catch (e: any) {
       logger.error('System', 'Wipe failed', e);
+      alert(`Gagal mereset data lokal: ${e?.message || String(e)}`);
     }
   };
 
