@@ -1,0 +1,6 @@
+{
+  "name": "FC.OS - Field Collection Operating System",
+  "description": "A production-grade Progressive Web Application (PWA) designed to digitize, structure, and optimize the daily workflow of professional Field Collectors, featuring offline-first Dexie.js database, real-time sync capabilities, and outdoor-optimized UI.",
+  "requestFramePermissions": ["geolocation", "camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
